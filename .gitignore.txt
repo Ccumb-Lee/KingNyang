@@ -3,18 +3,13 @@
 # Unity generated #
  
 # =============== #
- 
 Temp/
- 
 Obj/
- 
 UnityGenerated/
- 
 Library/
-UserSettings/
- .vs/
- 
 Logs/
+.vs/
+ 
 # ===================================== #
  
 # Visual Studio / MonoDevelop generated #
@@ -43,7 +38,8 @@ ExportedObj/
 
 *.apk
 
- 
+
+
 # ============ #
  
 # OS generated #
