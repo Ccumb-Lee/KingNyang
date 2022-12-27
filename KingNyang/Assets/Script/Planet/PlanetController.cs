@@ -31,4 +31,9 @@ public class PlanetController : MonoBehaviour
         m_createController.Create_Line();
     }
 
+    public void CheckAndNext()
+    {
+        m_createController.CheckAndNext();
+    }
+
 }

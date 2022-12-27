@@ -65,16 +65,20 @@ public class ObjectCreaterController : MonoBehaviour
 
             if(m_currentKind[i] > 0)
             {
-                obj.GetComponent<Obstacle>().Init_Obstacle(3, CheckAndNext);
+                obj.GetComponent<Obstacle>().Init_Obstacle(3);
             }
             else if(m_currentKind[i] < 0)
             {
-                obj.GetComponent<Obstacle>().Init_Obstacle(1, CheckAndNext);
-                obj.gameObject.tag = "HATE";
+                if(obj != null)
+                {
+                    obj.GetComponent<Obstacle>().Init_Obstacle(1);
+                    obj.gameObject.tag = "HATE";
+                }
+               
             }
             else
             {
-                obj.GetComponent<Obstacle>().Init_Obstacle(1, CheckAndNext);
+                obj.GetComponent<Obstacle>().Init_Obstacle(1);
             }
             objList.Add(obj);
         }
@@ -107,6 +111,7 @@ public class ObjectCreaterController : MonoBehaviour
         {
             m_stuffQueue.Dequeue();
             Remove_First(m_firstObjects);
+            m_firstObjects = m_stuffQueue.Peek();
             m_func?.Invoke();
         }
     }
@@ -126,17 +131,17 @@ public class ObjectCreaterController : MonoBehaviour
     {
         int num = Random.Range(0, 100);
 
-        if(num > 10)
+        if(num < 5)
         {
             m_currentKind[_lineIndex] = -1;
             return m_hateStuff;
         }
-        else if(num > 20)
+        else if(num < 10)
         {
             m_currentKind[_lineIndex] = 1;
             return m_likeStuff;
         }
-        else if (num > 35)
+        else if (num < 30)
         {
             m_currentKind[_lineIndex] = -1;
             return null;

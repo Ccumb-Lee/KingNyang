@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    public delegate void AllDeadFunc();
-    AllDeadFunc m_func;
     private int m_hp;
 
-    public void Init_Obstacle(int _hp, AllDeadFunc _func)
+    public virtual void Init_Obstacle(int _hp)
     {
         m_hp = _hp;
-        m_func = _func;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,13 +21,19 @@ public class Obstacle : MonoBehaviour
 
                 if (m_hp <= 0)
                 {
-                    m_func?.Invoke();
-                    Destroy(this.gameObject);
+                    GameManager.instance().Score++;
+                    this.gameObject.SetActive(false);
                 }
             }
-            
+            else
+            {
+                DoSomething();
+            }
         }
     }
     
+    protected virtual void DoSomething()
+    {
 
+    }
 }

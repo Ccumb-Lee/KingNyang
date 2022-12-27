@@ -20,15 +20,39 @@ public class GameManager : Singleton<GameManager>
         {
             return m_score;
         }
+        set
+        {
+            m_score = value;
+            Debug.Log(m_score);
+        }
     }
 
     [SerializeField]
     PlanetController m_planetController;
 
+    [SerializeField]
+    CatController m_catController;
+
     private void Start()
     {
         m_isStart = true;
+        m_score = 0;
 
         m_planetController.Init_Component(ObjectStorage.Thema.Gyeongbokgung);
+    }
+
+    public void CheckAndNext()
+    {
+        m_planetController.CheckAndNext();
+    }
+
+    public void Set_CatCantMove()
+    {
+        m_catController.Set_CantMove();
+    }
+
+    public void Set_CatCanMove()
+    {
+        m_catController.Set_CanMove();
     }
 }

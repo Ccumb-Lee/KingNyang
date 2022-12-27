@@ -12,6 +12,7 @@ public class ObjectCreater : MonoBehaviour
         if (_obj == null)
             return null;
         GameObject obj = Instantiate(_obj, this.transform);
+        obj.transform.localPosition = Vector3.zero;
         obj.transform.SetParent(m_createRoot);
         return obj;
     }
