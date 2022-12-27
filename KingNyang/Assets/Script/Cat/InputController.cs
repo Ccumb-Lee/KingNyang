@@ -6,9 +6,8 @@ using UnityEngine;
 /// <summary>
 /// 캐릭터 움직임 컴포넌트
 /// </summary>
-public class MoveController : MonoBehaviour
+public class InputController : MonoBehaviour
 {
-    
 
     private void Update()
     {
