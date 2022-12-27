@@ -22,7 +22,10 @@ public class GameManager : Singleton<GameManager>
     GameController m_myController;
     GameController m_otherController;
 
+    int m_playerCount = 0;
+
     bool m_isSingle;
+    bool m_useServer = false;
     bool m_isInit = false;
 
     private void Start()
@@ -30,6 +33,32 @@ public class GameManager : Singleton<GameManager>
         if(this.GetComponentInChildren<PhotonInit>() == null)
         {
             InitAndStart_Game();
+        }
+        else
+        {
+            m_useServer = true;
+        }
+    }
+    public void Set_PlayerCount(GameController _controller)
+    {
+        if (!m_useServer)
+            return;
+
+        m_playerCount++;
+
+        if (m_playerCount >= 2)
+            _controller.transform.position += new Vector3(10.0f, 0.0f, 0.0f);
+
+        Start_Game();
+
+        //Debug.Log(m_playerCount);
+    }
+
+    void Start_Game()
+    {
+        if (m_playerCount >= 2)
+        {
+            GameManager.instance().InitAndStart_Game();
         }
     }
 

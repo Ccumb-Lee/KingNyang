@@ -42,22 +42,7 @@ public class PhotonInit : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.Instantiate("Player", new Vector3(-12.18f + (10 * m_playerCount), 8.27f, 28.084f), Quaternion.identity, 0);
 
-        Set_PlayerCount();
-
-        Start_Game();
     }
 
-    void Set_PlayerCount()
-    {
-        GameController[] players = FindObjectsOfType<GameController>();
-        m_playerCount = players.Length;
-        Debug.Log(m_playerCount);
-    }
-    void Start_Game()
-    {
-        if(m_playerCount > 1)
-        {
-            GameManager.instance().InitAndStart_Game();
-        }
-    }
+  
 }

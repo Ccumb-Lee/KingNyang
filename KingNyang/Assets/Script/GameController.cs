@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 
 [DisallowMultipleComponent]
-public class GameController : MonoBehaviour
+public class GameController : MonoBehaviour, IPunObservable
 {
     private bool m_isStart = false;
     public bool IsStart
@@ -66,6 +66,17 @@ public class GameController : MonoBehaviour
        
     }
 
+    private void Start()
+    {
+        GameManager.instance().Set_PlayerCount(this);
+
+        if (m_pv.IsMine)
+        {
+            Camera.main.transform.SetParent(m_camPos);
+            Camera.main.transform.localPosition = Vector3.zero;
+        }
+    }
+
     void CheckAndEndGame()
     {
         if (!m_isSingle)
@@ -94,11 +105,7 @@ public class GameController : MonoBehaviour
 
         Set_CatCanMove();
 
-        if (m_pv.IsMine)
-        {
-            Camera.main.transform.SetParent(m_camPos);
-            Camera.main.transform.localPosition = Vector3.zero;
-        }
+       
     }
 
     public void End_Game()
@@ -121,5 +128,30 @@ public class GameController : MonoBehaviour
     {
         
         m_catController.Set_CanMove();
+    }
+
+    // IPunObservable 인터페이스를 구현해야한다.
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // We own this player: send the others our data
+            stream.SendNext(m_score);
+            //stream.SendNext(Health);
+        }
+        else
+        {
+            try
+            {
+                this.m_score = (int)stream.ReceiveNext();
+            }
+            catch
+            {
+
+            }
+            // Network player, receive data
+            
+            //this.Health = (float)stream.ReceiveNext();
+        }
     }
 }
