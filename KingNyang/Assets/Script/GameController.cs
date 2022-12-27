@@ -6,7 +6,7 @@ using Photon.Pun;
 [DisallowMultipleComponent]
 public class GameController : MonoBehaviour
 {
-    private bool m_isStart;
+    private bool m_isStart = false;
     public bool IsStart
     {
         get
@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     }
 
     private int m_score;
+    
     public int Score
     {
         get
@@ -25,9 +26,14 @@ public class GameController : MonoBehaviour
         set
         {
             m_score = value;
-            Debug.Log(m_score);
+
+            CheckAndEndGame();
         }
     }
+
+    private int m_targetScore;
+
+    bool m_isSingle = false;
 
     [SerializeField]
     PlanetController m_planetController;
@@ -41,19 +47,55 @@ public class GameController : MonoBehaviour
     [SerializeField]
     PhotonView m_pv;
 
-    private void Start()
+    public void Init()
+    {
+        m_isStart = false;
+        m_planetController.Init_Component(ObjectStorage.Thema.Gyeongbokgung);
+        m_catController.Init();
+
+        m_targetScore = -1;
+       
+    }
+
+    void CheckAndEndGame()
+    {
+        if (!m_isSingle)
+        {
+            return;
+        }
+
+        GameManager.instance().Set_Slider((float)m_score, (float)m_targetScore);
+
+        if (m_score >= m_targetScore)
+        {
+            GameManager.instance().End_Game();
+        }
+    }
+    
+    public void Set_TargetScore()
+    {
+        m_isSingle = true;
+        m_targetScore = Random.Range(60, 65);
+    }
+
+    public void Start_Game()
     {
         m_isStart = true;
         m_score = 0;
 
-        m_planetController.Init_Component(ObjectStorage.Thema.Gyeongbokgung);
-        m_catController.Init();
+        Set_CatCanMove();
 
-        if(m_pv.IsMine)
+        if (m_pv.IsMine)
         {
             Camera.main.transform.SetParent(m_camPos);
             Camera.main.transform.localPosition = Vector3.zero;
         }
+    }
+
+    public void End_Game()
+    {
+        m_isStart = false;
+        Set_CatCantMove();
     }
 
     public void CheckAndNext()
@@ -68,6 +110,7 @@ public class GameController : MonoBehaviour
 
     public void Set_CatCanMove()
     {
+        
         m_catController.Set_CanMove();
     }
 }

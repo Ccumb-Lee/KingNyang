@@ -25,16 +25,13 @@ public class CatController : MonoBehaviour
     [SerializeField]
     PhotonView m_pv;
 
-    private void Start()
-    {
-        m_canMove = true;
-    }
-
     public void Init()
     {
+        m_canMove = false;
         m_owner = this.GetComponent<GameController>();
         m_catController.Init(this);
     }
+
 
     private void Update()
     {

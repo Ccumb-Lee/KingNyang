@@ -6,6 +6,8 @@ using Photon.Realtime;
 
 public class PhotonInit : MonoBehaviourPunCallbacks
 {
+    int m_playerCount = 0;
+
     public string version = "v1.0";
     // Start is called before the first frame update
     void Awake()
@@ -35,8 +37,12 @@ public class PhotonInit : MonoBehaviourPunCallbacks
         Debug.Log("Enter Room");
         CreatePlayer();
     }
+
     void CreatePlayer()
     {
-        PhotonNetwork.Instantiate("Player", new Vector3(-12.18f + 10, 8.27f, 28.084f), Quaternion.identity, 0);
+        PhotonNetwork.Instantiate("Player", new Vector3(-12.18f + (10 * m_playerCount), 8.27f, 28.084f), Quaternion.identity, 0);
+
+        m_playerCount++;
+
     }
 }

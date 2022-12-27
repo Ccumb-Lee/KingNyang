@@ -24,7 +24,7 @@ public class Obstacle : MonoBehaviour
                 if (m_hp <= 0)
                 {
 
-                    m_cat.Owner.Score++;
+                   
                     this.gameObject.SetActive(false);
                 }
             }

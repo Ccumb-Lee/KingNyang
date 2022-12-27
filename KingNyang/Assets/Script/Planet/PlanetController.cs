@@ -27,7 +27,7 @@ public class PlanetController : MonoBehaviour
     {
         m_owner = this.GetComponent<GameController>();
 
-        m_createController.Init(m_storage.Get_ThemaObjects(_thema), m_movement.Start_Rotate);
+        m_createController.Init(m_storage.Get_ThemaObjects(_thema), Move_Next);
         m_movement.Init_Planet(CreateStuff);
 
         for (int i = 0; i < 5; i++)
@@ -36,6 +36,12 @@ public class PlanetController : MonoBehaviour
             m_movement.Rotate_NoAnim();
         }
         m_createController.Create_Line();
+    }
+
+    void Move_Next()
+    {
+        m_movement.Start_Rotate();
+        Owner.Score++;
     }
 
     void CreateStuff()
