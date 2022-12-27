@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlanetMovement : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class PlanetMovement : MonoBehaviour
         m_endFunc = _endFunc;
     }
 
+
     public void Start_Rotate()
     {
         if (m_startRotate)
@@ -56,6 +58,7 @@ public class PlanetMovement : MonoBehaviour
 
     }
 
+    //[PunRPC]
     private void Update()
     {
         if (!m_isInit)
@@ -71,6 +74,7 @@ public class PlanetMovement : MonoBehaviour
             
     }
 
+    [PunRPC]
     void Rotate()
     {
         float angle = Mathf.Lerp(m_current, m_amount, m_speed);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class ObjectCreaterController : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class ObjectCreaterController : MonoBehaviour
         m_func = _func;
     }
 
+    [PunRPC]
     public void Create_Line()
     {
         GameObject[] objects = new GameObject[4];
@@ -116,6 +118,7 @@ public class ObjectCreaterController : MonoBehaviour
         }
     }
 
+    [PunRPC]
     public void Remove_First(List<GameObject> _objList)
     {
         for(int i = 0; i < _objList.Count; i++)

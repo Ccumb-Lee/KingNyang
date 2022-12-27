@@ -75,6 +75,16 @@ public class GameController : MonoBehaviour, IPunObservable
             Camera.main.transform.SetParent(m_camPos);
             Camera.main.transform.localPosition = Vector3.zero;
         }
+        else
+        {
+            GameManager.instance().SubCam?.Set_Camera(m_camPos);
+        }
+    }
+
+    public void MoveThis()
+    {
+        if(!m_pv.IsMine)
+            this.transform.position += new Vector3(10.0f, 0.0f, 0.0f);
     }
 
     void CheckAndEndGame()
@@ -144,6 +154,7 @@ public class GameController : MonoBehaviour, IPunObservable
             try
             {
                 this.m_score = (int)stream.ReceiveNext();
+                GameManager.instance().Update_Slider();
             }
             catch
             {

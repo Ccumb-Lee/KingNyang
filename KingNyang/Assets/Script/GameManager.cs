@@ -28,6 +28,16 @@ public class GameManager : Singleton<GameManager>
     bool m_useServer = false;
     bool m_isInit = false;
 
+    [SerializeField]
+    SubCamComponent m_subCam;
+    public SubCamComponent SubCam
+    {
+        get
+        {
+            return m_subCam;
+        }
+    }
+
     private void Start()
     {
         if(this.GetComponentInChildren<PhotonInit>() == null)
@@ -47,7 +57,7 @@ public class GameManager : Singleton<GameManager>
         m_playerCount++;
 
         if (m_playerCount >= 2)
-            _controller.transform.position += new Vector3(10.0f, 0.0f, 0.0f);
+            _controller.MoveThis();
 
         Start_Game();
 

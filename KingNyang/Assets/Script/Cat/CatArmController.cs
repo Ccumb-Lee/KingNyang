@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class CatArmController : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class CatArmController : MonoBehaviour
     }
 
 
+    [PunRPC]
     public void Move_Left1()
     {
         if (m_isMoving)
@@ -40,6 +42,7 @@ public class CatArmController : MonoBehaviour
         StartCoroutine(Move_Origin());
     }
 
+    [PunRPC]
     public void Move_Left2()
     {
         if (m_isMoving)
@@ -49,6 +52,7 @@ public class CatArmController : MonoBehaviour
         StartCoroutine(Move_Origin());
     }
 
+    [PunRPC]
     public void Move_Right1()
     {
         if (m_isMoving)
@@ -58,6 +62,7 @@ public class CatArmController : MonoBehaviour
         StartCoroutine(Move_Origin());
     }
 
+    [PunRPC]
     public void Move_Right2()
     {
         if (m_isMoving)
@@ -67,8 +72,8 @@ public class CatArmController : MonoBehaviour
         StartCoroutine(Move_Origin());
     }
 
-    
 
+    [PunRPC]
     IEnumerator Move_Origin()
     {
         yield return new WaitForSeconds(0.3f);
