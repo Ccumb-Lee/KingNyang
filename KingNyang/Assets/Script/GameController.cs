@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
             m_score = value;
 
             CheckAndEndGame();
+            GameManager.instance().Update_Slider();
         }
     }
 
@@ -46,6 +47,14 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     PhotonView m_pv;
+
+    public bool IsMine
+    {
+        get
+        {
+            return m_pv.IsMine;
+        }
+    }
 
     public void Init()
     {

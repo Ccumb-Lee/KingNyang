@@ -41,21 +41,21 @@ public class CatController : MonoBehaviour
         if (!m_canMove)
             return;
 
-        if(Input.GetKeyDown(KeyCode.W))
+        if(Input.GetKeyDown(KeyCode.A))
         {
             m_catController.Move_Left1();
 
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.S))
         {
             m_catController.Move_Left2();
 
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.D))
         {
             m_catController.Move_Right1();
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.F))
         {
             m_catController.Move_Right2();
         }

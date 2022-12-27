@@ -19,19 +19,37 @@ public class GameManager : Singleton<GameManager>
 
     GameController[] m_controllers;
 
+    GameController m_myController;
+    GameController m_otherController;
+
     bool m_isSingle;
+    bool m_isInit = false;
 
     private void Start()
     {
+        if(this.GetComponentInChildren<PhotonInit>() == null)
+        {
+            InitAndStart_Game();
+        }
+    }
+
+    public void InitAndStart_Game()
+    {
         m_isGameStart = false;
         m_controllers = FindObjectsOfType<GameController>();
+
+        m_isInit = true;
 
         m_time = m_gameTime;
 
         Init_Game();
 
-        Set_Text(); 
-        StartCoroutine( Start_Game_Cor());
+        Set_Text();
+
+        m_timeText.gameObject.SetActive(true);
+        m_scoreSlider.gameObject.SetActive(true);
+
+        StartCoroutine(Start_Game_Cor());
     }
 
     IEnumerator Start_Game_Cor()
@@ -76,6 +94,44 @@ public class GameManager : Singleton<GameManager>
         m_scoreSlider.value = _current / _total;
     }
 
+    public void Select_Mine()
+    {
+        for(int i = 0; i < m_controllers.Length; i++)
+        {
+            if(m_controllers[i].IsMine)
+            {
+                m_myController = m_controllers[i];
+            }
+            else
+            {
+                m_otherController = m_controllers[i];
+            }
+        }
+    }
+
+    public void Update_Slider()
+    {
+        if (m_isSingle || !m_isInit)
+            return;
+
+        Set_Slider_Compare(m_myController.Score, m_otherController.Score);
+    }
+
+    void Set_Slider_Compare(float _myScore, float _otherScore)
+    {
+        if(_myScore == _otherScore)
+        {
+            m_scoreSlider.value = 0.5f;
+        }
+        else
+        {
+            float total = _myScore + _otherScore;
+
+            m_scoreSlider.value = ((_myScore / total));
+
+        }
+    }
+
     void Init_Game()
     {
         for (int i = 0; i < m_controllers.Length; i++)
@@ -84,7 +140,16 @@ public class GameManager : Singleton<GameManager>
         }
 
         if (m_controllers.Length < 2)
+        {
+            m_isSingle = true;
             m_controllers[0].Set_TargetScore();
+        }
+        else
+        {
+            m_isSingle = false;
+            Select_Mine();
+            Update_Slider();
+        }    
     }
 
     void Set_Text()
