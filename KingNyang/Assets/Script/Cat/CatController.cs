@@ -8,6 +8,15 @@ using UnityEngine;
 /// </summary>
 public class CatController : MonoBehaviour
 {
+    GameController m_owner;
+    public GameController Owner
+    {
+        get
+        {
+            return m_owner;
+        }
+    }
+
     [SerializeField]
     CatArmController m_catController;
     bool m_canMove;
@@ -16,6 +25,13 @@ public class CatController : MonoBehaviour
     {
         m_canMove = true;
     }
+
+    public void Init()
+    {
+        m_owner = this.GetComponent<GameController>();
+        m_catController.Init(this);
+    }
+
     private void Update()
     {
         if (!m_canMove)

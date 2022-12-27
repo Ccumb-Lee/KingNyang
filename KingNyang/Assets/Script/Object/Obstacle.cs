@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    protected CatController m_cat;
     private int m_hp;
 
     public virtual void Init_Obstacle(int _hp)
@@ -15,13 +16,15 @@ public class Obstacle : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            m_cat = other.GetComponentInParent<CatController>();
             if (this.tag != "HATE")
             {
                 m_hp -= 1;
 
                 if (m_hp <= 0)
                 {
-                    GameManager.instance().Score++;
+
+                    m_cat.Owner.Score++;
                     this.gameObject.SetActive(false);
                 }
             }

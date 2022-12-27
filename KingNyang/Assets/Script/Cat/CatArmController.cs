@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CatArmController : MonoBehaviour
 {
+    CatController m_owner;
+
     [SerializeField]
     GameObject m_leftArm;
     Vector3 m_leftOriginPos;
@@ -18,8 +20,9 @@ public class CatArmController : MonoBehaviour
     bool m_isMoving;
 
 
-    private void Start()
+    public void Init(CatController _owner)
     {
+        m_owner = _owner;
         m_leftOriginPos = m_leftArm.transform.localPosition;
         m_rightOriginPos = m_rightArm.transform.localPosition;
 
@@ -73,7 +76,7 @@ public class CatArmController : MonoBehaviour
         m_leftArm.transform.localPosition = m_leftOriginPos;
         m_rightArm.transform.localPosition = m_rightOriginPos;
 
-        GameManager.instance().CheckAndNext();
+        m_owner.Owner.CheckAndNext();
 
         m_isMoving = false;
     }

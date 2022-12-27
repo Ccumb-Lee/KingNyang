@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class PlanetController : MonoBehaviour
 {
+    GameController m_owner;
+    public GameController Owner
+    {
+        get
+        {
+            return m_owner;
+        }
+    }
+
+
     [SerializeField]
     ObjectStorage m_storage;
 
@@ -15,6 +25,8 @@ public class PlanetController : MonoBehaviour
 
     public void Init_Component(ObjectStorage.Thema _thema)
     {
+        m_owner = this.GetComponent<GameController>();
+
         m_createController.Init(m_storage.Get_ThemaObjects(_thema), m_movement.Start_Rotate);
         m_movement.Init_Planet(CreateStuff);
 

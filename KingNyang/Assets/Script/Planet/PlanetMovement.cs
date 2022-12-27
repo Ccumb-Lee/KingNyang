@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlanetMovement : MonoBehaviour
 {
+    PlanetController m_owner;
+
     public delegate void EndFunc();
     EndFunc m_endFunc;
 
@@ -16,11 +18,16 @@ public class PlanetMovement : MonoBehaviour
 
     bool m_startRotate;
 
+    bool m_isInit = false;
+
+
     public void Init_Planet(EndFunc _endFunc)
     {
         //this.transform.eulerAngles = new Vector3(0, 0, 0);
 
+        m_owner = this.GetComponentInParent<PlanetController>();
         m_startRotate = false;
+        m_isInit = true;
 
         m_endFunc = _endFunc;
     }
@@ -51,7 +58,10 @@ public class PlanetMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.instance().IsStart)
+        if (!m_isInit)
+            return;
+
+        if (!m_owner.Owner.IsStart)
             return;
 
         if (m_startRotate)

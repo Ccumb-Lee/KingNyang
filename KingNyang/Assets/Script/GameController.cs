@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : Singleton<GameManager>
+[DisallowMultipleComponent]
+public class GameController : MonoBehaviour
 {
     private bool m_isStart;
     public bool IsStart
@@ -39,6 +40,7 @@ public class GameManager : Singleton<GameManager>
         m_score = 0;
 
         m_planetController.Init_Component(ObjectStorage.Thema.Gyeongbokgung);
+        m_catController.Init();
     }
 
     public void CheckAndNext()
