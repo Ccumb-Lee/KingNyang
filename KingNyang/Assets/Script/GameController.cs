@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 [DisallowMultipleComponent]
 public class GameController : MonoBehaviour
@@ -34,6 +35,12 @@ public class GameController : MonoBehaviour
     [SerializeField]
     CatController m_catController;
 
+    [SerializeField]
+    Transform m_camPos;
+
+    [SerializeField]
+    PhotonView m_pv;
+
     private void Start()
     {
         m_isStart = true;
@@ -41,6 +48,12 @@ public class GameController : MonoBehaviour
 
         m_planetController.Init_Component(ObjectStorage.Thema.Gyeongbokgung);
         m_catController.Init();
+
+        if(m_pv.IsMine)
+        {
+            Camera.main.transform.SetParent(m_camPos);
+            Camera.main.transform.localPosition = Vector3.zero;
+        }
     }
 
     public void CheckAndNext()

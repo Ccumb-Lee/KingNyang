@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 
 /// <summary>
 /// 캐릭터 컴포넌트
@@ -21,6 +21,10 @@ public class CatController : MonoBehaviour
     CatArmController m_catController;
     bool m_canMove;
 
+
+    [SerializeField]
+    PhotonView m_pv;
+
     private void Start()
     {
         m_canMove = true;
@@ -34,6 +38,9 @@ public class CatController : MonoBehaviour
 
     private void Update()
     {
+        if (!m_pv.IsMine)
+            return;
+
         if (!m_canMove)
             return;
 

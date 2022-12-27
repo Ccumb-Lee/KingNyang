@@ -1106,7 +1106,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2299475981632836832}
-  - component: {fileID: 2299475981632836834}
   m_Layer: 0
   m_Name: CamPos
   m_TagString: MainCamera
@@ -1129,14 +1128,6 @@ Transform:
   m_Father: {fileID: 2299475981344945192}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 27, y: -45.588, z: -7.387}
---- !u!81 &2299475981632836834
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2299475981632836835}
-  m_Enabled: 1
 --- !u!1 &2299475981650541265
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,6 +1277,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_planetController: {fileID: 2299475981726902073}
   m_catController: {fileID: 2299475981726902072}
+  m_camPos: {fileID: 2299475981632836832}
+  m_pv: {fileID: 2299475981726902079}
 --- !u!114 &2299475981726902073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1314,6 +1307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_catController: {fileID: 2299475981344945199}
+  m_pv: {fileID: 2299475981726902079}
 --- !u!114 &2299475981726902079
 MonoBehaviour:
   m_ObjectHideFlags: 0
