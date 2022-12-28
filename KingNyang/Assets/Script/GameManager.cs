@@ -51,6 +51,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+
     private void Start()
     {
         m_startText.gameObject.SetActive(false);
@@ -61,6 +62,7 @@ public class GameManager : Singleton<GameManager>
         else
         {
             m_useServer = true;
+            m_timeText.gameObject.SetActive(false);
         }
     }
     public void Set_PlayerCount(GameController _controller)
@@ -111,7 +113,8 @@ public class GameManager : Singleton<GameManager>
 
         Set_Text();
 
-        m_timeText.gameObject.SetActive(true);
+        if(m_isSingle)
+            m_timeText.gameObject.SetActive(true);
         m_scoreSlider.gameObject.SetActive(true);
 
         StartCoroutine(Start_Game_Cor());
@@ -144,7 +147,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        if(m_isGameStart)
+        if(m_isGameStart && m_isSingle)
         {
             m_time -= Time.deltaTime;
 
@@ -156,6 +159,41 @@ public class GameManager : Singleton<GameManager>
             }
         }
     }
+
+    [SerializeField]
+    FinalController m_finalGame;
+
+    bool m_isCheckEnd = false;
+    public void CheckEnd_MultiGame()
+    {
+        if (m_isCheckEnd)
+            return;
+
+        Camera.main.gameObject.SetActive(false);
+        m_finalGame.gameObject.SetActive(true);
+        
+        End_Game();
+        m_isCheckEnd = true;
+    }
+
+    public void End_FinalGame()
+    {
+        for (int i = 0; i < m_controllers.Length; i++)
+        {
+            m_controllers[i].Set_CatCantMove();
+        }
+
+        if(m_myController.Score > m_otherController.Score)
+        {
+            m_endingController.See_Ending(EndingController.KIND.happy);
+        }
+        else
+        {
+            m_endingController.See_Ending(EndingController.KIND.bad_common);
+        }
+    }
+
+
 
     public void End_Game()
     {
@@ -206,6 +244,11 @@ public class GameManager : Singleton<GameManager>
             return;
 
         Set_Slider_Compare(m_myController.Score, m_otherController.Score);
+
+        if(m_myController.Score + m_otherController.Score >= 10)
+        {
+            CheckEnd_MultiGame();
+        }
     }
 
     void Set_Slider_Compare(float _myScore, float _otherScore)

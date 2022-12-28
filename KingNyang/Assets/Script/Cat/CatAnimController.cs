@@ -135,7 +135,7 @@ public class CatAnimController : MonoBehaviour
    // [PunRPC]
     IEnumerator Move_Origin()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.25f);
 
         m_anim.SetBool("right_01", false);
         m_anim.SetBool("right_02", false);

@@ -1092,8 +1092,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 54, y: -142}
-  m_SizeDelta: {x: 250, y: 250}
+  m_AnchoredPosition: {x: 0, y: -700}
+  m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &650149346
 MonoBehaviour:
@@ -1211,6 +1211,10 @@ PrefabInstance:
     - target: {fileID: 2299475981726902079, guid: 12941334ba7ceb14284e99633ee2c3ff, type: 3}
       propertyPath: sceneViewId
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3253006328151422428, guid: 12941334ba7ceb14284e99633ee2c3ff, type: 3}
+      propertyPath: sceneViewId
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6128692259758028587, guid: 12941334ba7ceb14284e99633ee2c3ff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2237,6 +2241,7 @@ MonoBehaviour:
   m_screenHuddle: {fileID: 650149344}
   m_endingController: {fileID: 1564892761}
   m_subCam: {fileID: 0}
+  m_finalGame: {fileID: 0}
 --- !u!1001 &1462542187
 PrefabInstance:
   m_ObjectHideFlags: 0

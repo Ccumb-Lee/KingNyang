@@ -23,6 +23,7 @@ public class EndingController : MonoBehaviour
 
     public void See_Ending(KIND _kind)
     {
+        this.gameObject.SetActive(true);
         m_image.sprite = m_endings[(int)_kind];
         m_image.gameObject.SetActive(true);
     }

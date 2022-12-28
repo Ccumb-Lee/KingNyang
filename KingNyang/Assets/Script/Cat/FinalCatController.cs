@@ -5,6 +5,11 @@ using Photon.Pun;
 
 public class FinalCatController : MonoBehaviour
 {
+    GameController m_controller;
+
+    [SerializeField]
+    SkinnedMeshRenderer m_mesh;
+
     [SerializeField]
     PhotonView m_pv;
 
@@ -13,13 +18,38 @@ public class FinalCatController : MonoBehaviour
 
     bool m_isMoving;
 
-    public void Init()
-    {
+    bool m_canMove;
 
+    public void Init(GameController _controller)
+    {
+        this.gameObject.SetActive(true);
+
+        m_canMove = true;
+
+        if (!m_pv.IsMine)
+        {
+            this.transform.position = new Vector3(0.5f, 50, 0.0f);
+            //this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+        }
+        else
+        {
+            this.transform.position = new Vector3(-0.5f, 50, 0.0f);
+           
+        }
+
+        m_controller = _controller;
+    }
+
+    public void Set_CanMove(bool _canMove)
+    {
+        m_canMove = _canMove;
     }
 
     private void Update()
     {
+        if (!m_canMove)
+            return;
+
         if (!m_pv.IsMine)
             return;
 
@@ -36,7 +66,12 @@ public class FinalCatController : MonoBehaviour
             return;
 
         m_anim.SetBool("isAttack", true);
+        m_mesh.SetBlendShapeWeight(0, 100);
+        m_mesh.SetBlendShapeWeight(1, 100);
         m_isMoving = true;
+
+        m_controller.Score++;
+
         StartCoroutine(Move_Origin());
     }
 
@@ -44,6 +79,9 @@ public class FinalCatController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.25f);
 
+        m_anim.SetBool("isAttack", false);
+        m_mesh.SetBlendShapeWeight(0, 0);
+        m_mesh.SetBlendShapeWeight(1, 0);
         m_isMoving = false;
     }
 }

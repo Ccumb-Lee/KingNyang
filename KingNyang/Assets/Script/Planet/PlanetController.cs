@@ -23,11 +23,11 @@ public class PlanetController : MonoBehaviour
     [SerializeField]
     PlanetMovement m_movement;
 
-    public void Init_Component(ObjectStorage.Thema _thema)
+    public void Init_Component()
     {
         m_owner = this.GetComponent<GameController>();
 
-        m_createController.Init(m_storage.Get_ThemaObjects(_thema), Move_Next);
+        m_createController.Init(m_storage.Get_ThemaObjects(), Move_Next);
         m_movement.Init_Planet(CreateStuff);
 
         for (int i = 0; i < 5; i++)

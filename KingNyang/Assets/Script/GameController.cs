@@ -62,6 +62,9 @@ public class GameController : MonoBehaviour, IPunObservable
     [SerializeField]
     PhotonView m_pv;
 
+    [SerializeField]
+    FinalCatController m_finalCat;
+
     public bool IsMine
     {
         get
@@ -73,7 +76,7 @@ public class GameController : MonoBehaviour, IPunObservable
     public void Init()
     {
         m_isStart = false;
-        m_planetController.Init_Component(ObjectStorage.Thema.Gyeongbokgung);
+        m_planetController.Init_Component();
         m_catController.Init();
 
         m_targetScore = -1;
@@ -141,6 +144,9 @@ public class GameController : MonoBehaviour, IPunObservable
     {
         m_isStart = false;
         Set_CatCantMove();
+
+        if (m_finalCat != null)
+            m_finalCat.Init(this);
     }
 
     public void CheckAndNext()
@@ -151,6 +157,9 @@ public class GameController : MonoBehaviour, IPunObservable
     public void Set_CatCantMove()
     {
         m_catController.Set_CantMove();
+
+        if (m_finalCat != null)
+            m_finalCat.Set_CanMove(false);
     }
 
     public void Set_CatCanMove()
