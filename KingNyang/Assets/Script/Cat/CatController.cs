@@ -18,7 +18,7 @@ public class CatController : MonoBehaviour
     }
 
     [SerializeField]
-    CatArmController m_catController;
+    CatAnimController m_catController;
     bool m_canMove;
 
 
