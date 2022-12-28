@@ -51,12 +51,12 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-
     private void Start()
     {
         m_startText.gameObject.SetActive(false);
         if (this.GetComponentInChildren<PhotonInit>() == null)
         {
+            
             InitAndStart_Game();
         }
         else

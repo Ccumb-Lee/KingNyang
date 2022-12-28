@@ -45,6 +45,12 @@ public class FinalCatController : MonoBehaviour
         m_canMove = _canMove;
     }
 
+
+    public void Set_Material(int _num)
+    {
+        m_mesh.material = CatInfoController.instance().Get_Material((CatInfoController.CAT_TYPE)_num);
+    }
+
     private void Update()
     {
         if (!m_canMove)

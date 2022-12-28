@@ -25,11 +25,18 @@ public class CatController : MonoBehaviour
     [SerializeField]
     PhotonView m_pv;
 
+
+    [SerializeField]
+    GameObject m_particle;
+
     public void Init()
     {
         m_canMove = false;
         m_owner = this.GetComponent<GameController>();
         m_catController.Init(this);
+
+       // if (m_pv.IsMine)
+      
     }
 
 
@@ -70,6 +77,16 @@ public class CatController : MonoBehaviour
     public void Set_CanMove()
     {
         m_canMove = true;
+    }
+
+    public void Set_Material(int _num)
+    {
+        m_catController.Set_Material(_num);
+    }
+
+    public void Create_Particle(Vector3 _pos)
+    {
+        Instantiate(m_particle, _pos, Quaternion.identity);
     }
 
     public void Stun()

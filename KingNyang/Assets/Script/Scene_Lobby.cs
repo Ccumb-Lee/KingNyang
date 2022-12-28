@@ -42,4 +42,12 @@ public class Scene_Lobby : MonoBehaviour
     {
         SceneManager.LoadScene("Multi");
     }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            CatInfoController.instance().Type++;
+        }
+    }
 }

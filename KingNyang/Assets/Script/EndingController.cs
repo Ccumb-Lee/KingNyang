@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EndingController : MonoBehaviour
 {
@@ -26,6 +27,11 @@ public class EndingController : MonoBehaviour
         this.gameObject.SetActive(true);
         m_image.sprite = m_endings[(int)_kind];
         m_image.gameObject.SetActive(true);
+    }
+
+    public void OnClick_Lobby()
+    {
+        SceneManager.LoadScene("Lobby");
     }
 
 }

@@ -6,6 +6,9 @@ using Photon.Realtime;
 
 public class CatAnimController : MonoBehaviour
 {
+
+    CatInfoController.CAT_TYPE m_type;
+
     CatController m_owner;
 
     [SerializeField]
@@ -33,6 +36,14 @@ public class CatAnimController : MonoBehaviour
         m_owner = _owner;
 
         m_isMoving = false;
+
+       
+    }
+
+    public void Set_Material(int _num)
+    {
+        m_type = (CatInfoController.CAT_TYPE)_num;//CatInfoController.instance().Type;
+        m_mesh.material = CatInfoController.instance().Get_Material(m_type);
     }
 
     public void Set_Hate(bool _isActive)

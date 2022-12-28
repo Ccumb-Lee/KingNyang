@@ -27,6 +27,12 @@ public class EnvironmentManager : Singleton<EnvironmentManager>
 
     public void Awake()
     {
+        if (EnvironmentManager.instance() != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+            
         DontDestroyOnLoad(this);
     }
 

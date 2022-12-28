@@ -20,17 +20,27 @@ public class Obstacle : MonoBehaviour
 
             m_hp -= 1;
 
-           
+            int endRand = Random.Range(0, 100);
 
 
 
             if (this.tag == "HATE")
             {
                 m_cat.Stun();
+
+                if(endRand < 33)
+                {
+                    GameManager.instance().See_Ending(EndingController.KIND.bad_3);
+                }
             }
             else if(this.tag == "LIKE")
             {
                 m_cat.Happy();
+
+                if (endRand < 33)
+                {
+                    GameManager.instance().See_Ending(EndingController.KIND.bad_2);
+                }
             }
             else if (this.tag == "BOX")
             {
@@ -45,6 +55,7 @@ public class Obstacle : MonoBehaviour
 
             if (m_hp <= 0)
             {
+                m_cat.Create_Particle(this.transform.position);
                 this.gameObject.SetActive(false);
             }
         }
@@ -53,6 +64,7 @@ public class Obstacle : MonoBehaviour
     protected void DoSomething()
     {
         int random = Random.Range(0, 100);
+       
 
         if(random > 25)
         {
@@ -60,8 +72,9 @@ public class Obstacle : MonoBehaviour
         }
         else if (random > 50)
         {
+            GameManager.instance().See_Ending(EndingController.KIND.bad_1);
             // ½ÅµµÈ­
-            m_cat.ScreenHuddle();
+            //m_cat.ScreenHuddle();
         }
         else if (random > 75)
         {

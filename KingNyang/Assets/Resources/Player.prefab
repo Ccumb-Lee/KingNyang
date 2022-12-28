@@ -349,6 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_catController: {fileID: 3456908028994759574}
   m_pv: {fileID: 2299475981726902079}
+  m_particle: {fileID: 185086, guid: 6c4ae31fa47a6c143a4e64ca4b65fc4a, type: 3}
 --- !u!114 &2299475981726902079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1539,6 +1540,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6478502590838287121, guid: c28c3d10e0027884497337acc43f610c, type: 3}
+      propertyPath: m_pv
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6478502590838287122, guid: c28c3d10e0027884497337acc43f610c, type: 3}
       propertyPath: m_Name
       value: FinalCat
@@ -1547,7 +1552,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6478502590838287123, guid: c28c3d10e0027884497337acc43f610c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c28c3d10e0027884497337acc43f610c, type: 3}
 --- !u!4 &2769380248018513767 stripped
 Transform:

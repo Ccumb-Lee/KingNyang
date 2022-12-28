@@ -65,6 +65,8 @@ public class GameController : MonoBehaviour, IPunObservable
     [SerializeField]
     FinalCatController m_finalCat;
 
+    int m_type;
+
     public bool IsMine
     {
         get
@@ -92,6 +94,9 @@ public class GameController : MonoBehaviour, IPunObservable
         {
             Camera.main.transform.SetParent(m_camPos);
             Camera.main.transform.localPosition = Vector3.zero;
+
+            m_type = (int)CatInfoController.instance().Type;
+            m_catController.Set_Material(m_type);
         }
         else
         {
@@ -146,7 +151,11 @@ public class GameController : MonoBehaviour, IPunObservable
         Set_CatCantMove();
 
         if (m_finalCat != null)
+        {
             m_finalCat.Init(this);
+            m_finalCat.Set_Material(m_type);
+        }
+            
     }
 
     public void CheckAndNext()
@@ -176,6 +185,7 @@ public class GameController : MonoBehaviour, IPunObservable
             // We own this player: send the others our data
             stream.SendNext(m_score);
             stream.SendNext(m_isReady);
+            stream.SendNext(CatInfoController.instance().Type);
             //stream.SendNext(Health);
         }
         else
@@ -184,8 +194,10 @@ public class GameController : MonoBehaviour, IPunObservable
             {
                 this.m_score = (int)stream.ReceiveNext();
                 this.m_isReady = (bool)stream.ReceiveNext();
+                this.m_type = (int)stream.ReceiveNext();
                 GameManager.instance().Update_Slider();
                 GameManager.instance().Update_CheckReady();
+                m_catController.Set_Material(this.m_type);
             }
             catch
             {
