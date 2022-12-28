@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7809156772936353303}
   - component: {fileID: 5457032323132682973}
   - component: {fileID: 6686131649954101464}
-  - component: {fileID: 3337553107632657983}
+  - component: {fileID: 4293007083337826836}
   m_Layer: 0
-  m_Name: special_object_water
+  m_Name: bg_object_0006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5817447354802524936}
-  m_Mesh: {fileID: -5726125776141812058, guid: 7eadccd5a0af333439f6bf78db8a51d6, type: 3}
+  m_Mesh: {fileID: -3424646812079746788, guid: d330876aa1f5d03419392f5d62e64df3, type: 3}
 --- !u!23 &5457032323132682973
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5035a8c1dbaa814186bfa37f785f04c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &3337553107632657983
+--- !u!65 &4293007083337826836
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
