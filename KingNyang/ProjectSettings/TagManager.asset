@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HATE
   - LIKE
+  - BOX
   layers:
   - Default
   - TransparentFX

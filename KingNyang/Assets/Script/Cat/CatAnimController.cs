@@ -12,6 +12,9 @@ public class CatAnimController : MonoBehaviour
     Animator m_anim;
 
     [SerializeField]
+    SkinnedMeshRenderer m_mesh;
+
+    [SerializeField]
     BoxCollider m_leftArm;
     //Vector3 m_leftOriginPos;
 
@@ -32,8 +35,39 @@ public class CatAnimController : MonoBehaviour
         m_isMoving = false;
     }
 
+    public void Set_Hate(bool _isActive)
+    {
+        m_anim.SetBool("isHate", _isActive);
 
-   // [PunRPC]
+        if (_isActive)
+        {
+            m_mesh.SetBlendShapeWeight(1, 100);
+        }
+        else
+        {
+            m_mesh.SetBlendShapeWeight(1, 0);
+        }
+
+    }
+
+    public void Set_Happy(bool _isActive)
+    {
+        //m_anim.SetBool("isHate", _isActive);
+        
+
+        if (_isActive)
+        {
+            m_mesh.SetBlendShapeWeight(0, 100);
+        }
+        else
+        {
+            m_mesh.SetBlendShapeWeight(0, 0);
+        }
+    }
+
+
+
+    // [PunRPC]
     public void Move_Left1()
     {
         if (m_isMoving)

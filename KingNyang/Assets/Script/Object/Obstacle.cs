@@ -17,26 +17,59 @@ public class Obstacle : MonoBehaviour
         if(other.tag == "Player")
         {
             m_cat = other.GetComponentInParent<CatController>();
-            if (this.tag != "HATE")
+
+            m_hp -= 1;
+
+           
+
+
+
+            if (this.tag == "HATE")
             {
-                m_hp -= 1;
-
-                if (m_hp <= 0)
-                {
-
-                   
-                    this.gameObject.SetActive(false);
-                }
+                m_cat.Stun();
+            }
+            else if(this.tag == "LIKE")
+            {
+                m_cat.Happy();
+            }
+            else if (this.tag == "BOX")
+            {
+                //m_cat.Happy();
+                DoSomething();
             }
             else
             {
-                DoSomething();
+                //m_cat.Happy();
+                
+            }
+
+            if (m_hp <= 0)
+            {
+                this.gameObject.SetActive(false);
             }
         }
     }
     
-    protected virtual void DoSomething()
+    protected void DoSomething()
     {
+        int random = Random.Range(0, 100);
 
+        if(random > 25)
+        {
+            m_cat.ScreenHuddle();
+        }
+        else if (random > 50)
+        {
+            // ½ÅµµÈ­
+            m_cat.ScreenHuddle();
+        }
+        else if (random > 75)
+        {
+            m_cat.Happy();
+        }
+        else
+        {
+
+        }
     }
 }

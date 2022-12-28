@@ -17,6 +17,9 @@ public class ObjectCreaterController : MonoBehaviour
     [SerializeField]
     GameObject m_hateStuff;
 
+    [SerializeField]
+    GameObject m_randomStuff;
+
     List<GameObject> m_normalStuffs;
 
     Queue<List<GameObject>> m_stuffQueue = new Queue<List<GameObject>>();
@@ -65,9 +68,15 @@ public class ObjectCreaterController : MonoBehaviour
         {
             GameObject obj = m_lines[i].Create_Object(objects[i]);
 
-            if(m_currentKind[i] > 0)
+            if (m_currentKind[i] > 1)
             {
-                obj.GetComponent<Obstacle>().Init_Obstacle(3);
+                obj.GetComponent<Obstacle>().Init_Obstacle(1);
+                obj.gameObject.tag = "BOX";
+            }
+            else if(m_currentKind[i] > 0)
+            {
+                obj.GetComponent<Obstacle>().Init_Obstacle(1);
+                obj.gameObject.tag = "LIKE";
             }
             else if(m_currentKind[i] < 0)
             {
@@ -134,17 +143,22 @@ public class ObjectCreaterController : MonoBehaviour
     {
         int num = Random.Range(0, 100);
 
-        if(num < 5)
+        if (num < 5)
+        {
+            m_currentKind[_lineIndex] = 2;
+            return m_hateStuff;
+        }
+        else if (num < 10)
         {
             m_currentKind[_lineIndex] = -1;
             return m_hateStuff;
         }
-        else if(num < 10)
+        else if(num < 15)
         {
             m_currentKind[_lineIndex] = 1;
             return m_likeStuff;
         }
-        else if (num < 30)
+        else if (num < 45)
         {
             m_currentKind[_lineIndex] = -1;
             return null;

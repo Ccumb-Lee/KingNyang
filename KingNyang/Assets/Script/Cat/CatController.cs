@@ -72,4 +72,55 @@ public class CatController : MonoBehaviour
         m_canMove = true;
     }
 
+    public void Stun()
+    {
+        m_catController.Set_Hate(true);
+        Set_CantMove();
+        StartCoroutine(Stun_Cor());
+    }
+
+    public void Happy()
+    {
+        m_catController.Set_Happy(true);
+        //Set_CantMove();
+        StartCoroutine(Happy_Cor());
+    }
+
+
+    IEnumerator Stun_Cor()
+    {
+        yield return new WaitForSecondsRealtime(2.0f);
+
+        Set_CanMove();
+        m_catController.Set_Hate(false);
+
+    }
+
+    IEnumerator Happy_Cor()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+
+        //Set_CanMove();
+        m_catController.Set_Happy(false);
+
+    }
+
+    public void ScreenHuddle()
+    {
+        if (!m_pv.IsMine)
+            return;
+
+        GameManager.instance().SetActive_Huddle(true);
+
+        StartCoroutine(ScreenHuddle_Cor());
+    }
+
+    IEnumerator ScreenHuddle_Cor()
+    {
+        yield return new WaitForSecondsRealtime(6.0f);
+
+        //Set_CanMove();
+        GameManager.instance().SetActive_Huddle(false);
+
+    }
 }

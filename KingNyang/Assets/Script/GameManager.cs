@@ -24,7 +24,12 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     UI_Wait m_wait;
 
+    [SerializeField]
+    GameObject m_screenHuddle;
 
+    [SerializeField]
+    EndingController m_endingController;
+   
     GameController[] m_controllers;
 
     GameController m_myController;
@@ -182,6 +187,19 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void See_Ending(EndingController.KIND _kind)
+    {
+        if(m_playerCount >= 2)
+        {
+            if ((int)_kind >= (int)EndingController.KIND.bad_1)
+                return;
+        }
+
+        m_endingController.See_Ending(_kind);
+        End_Game();
+
+    }
+
     public void Update_Slider()
     {
         if (m_isSingle || !m_isInit)
@@ -231,5 +249,10 @@ public class GameManager : Singleton<GameManager>
             m_time = 0.0f;
 
         m_timeText.text = ((int)m_time).ToString();
+    }
+
+    public void SetActive_Huddle(bool _isActive)
+    {
+        m_screenHuddle.gameObject.SetActive(_isActive);
     }
 }
