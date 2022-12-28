@@ -33,7 +33,7 @@ public class CatAnimController : MonoBehaviour
     }
 
 
-    [PunRPC]
+   // [PunRPC]
     public void Move_Left1()
     {
         if (m_isMoving)
@@ -47,7 +47,7 @@ public class CatAnimController : MonoBehaviour
         StartCoroutine(Move_Origin());
     }
 
-    [PunRPC]
+  //  [PunRPC]
     public void Move_Left2()
     {
         if (m_isMoving)
@@ -60,7 +60,7 @@ public class CatAnimController : MonoBehaviour
         StartCoroutine(Move_Origin());
     }
 
-    [PunRPC]
+  //  [PunRPC]
     public void Move_Right1()
     {
         if (m_isMoving)
@@ -73,7 +73,7 @@ public class CatAnimController : MonoBehaviour
         StartCoroutine(Move_Origin());
     }
 
-    [PunRPC]
+ //   [PunRPC]
     public void Move_Right2()
     {
         if (m_isMoving)
@@ -98,7 +98,7 @@ public class CatAnimController : MonoBehaviour
         m_rightArm.enabled = false;
     }
 
-    [PunRPC]
+   // [PunRPC]
     IEnumerator Move_Origin()
     {
         yield return new WaitForSeconds(0.3f);

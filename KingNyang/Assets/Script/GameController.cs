@@ -15,6 +15,20 @@ public class GameController : MonoBehaviour, IPunObservable
         }
     }
 
+    private bool m_isReady = false;
+    public bool IsReady
+    {
+        get
+        {
+            return m_isReady;
+        }
+        set
+        {
+            m_isReady = value;
+        }
+    }
+
+
     private int m_score;
     
     public int Score
@@ -69,6 +83,7 @@ public class GameController : MonoBehaviour, IPunObservable
     private void Start()
     {
         GameManager.instance().Set_PlayerCount(this);
+        m_isReady = false;
 
         if (m_pv.IsMine)
         {
@@ -84,7 +99,11 @@ public class GameController : MonoBehaviour, IPunObservable
     public void MoveThis()
     {
         if(!m_pv.IsMine)
-            this.transform.position += new Vector3(10.0f, 0.0f, 0.0f);
+        {
+            this.transform.position += new Vector3(-22.0f, 0.0f, 0.0f);
+            this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+        }
+            
     }
 
     void CheckAndEndGame()
@@ -147,6 +166,7 @@ public class GameController : MonoBehaviour, IPunObservable
         {
             // We own this player: send the others our data
             stream.SendNext(m_score);
+            stream.SendNext(m_isReady);
             //stream.SendNext(Health);
         }
         else
@@ -154,7 +174,9 @@ public class GameController : MonoBehaviour, IPunObservable
             try
             {
                 this.m_score = (int)stream.ReceiveNext();
+                this.m_isReady = (bool)stream.ReceiveNext();
                 GameManager.instance().Update_Slider();
+                GameManager.instance().Update_CheckReady();
             }
             catch
             {

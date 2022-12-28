@@ -74,7 +74,7 @@ public class PlanetMovement : MonoBehaviour
             
     }
 
-    [PunRPC]
+   // [PunRPC]
     void Rotate()
     {
         float angle = Mathf.Lerp(m_current, m_amount, m_speed);

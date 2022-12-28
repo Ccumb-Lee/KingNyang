@@ -53,11 +53,12 @@ public class CatController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            m_catController.Move_Right1();
+            m_catController.Move_Right2();
+            
         }
         else if (Input.GetKeyDown(KeyCode.F))
         {
-            m_catController.Move_Right2();
+            m_catController.Move_Right1();
         }
     }
 

@@ -18,8 +18,8 @@ public class Scene_Lobby : MonoBehaviour
 
         m_menus[0].Set_Func(OnTrigger_Quit);
         m_menus[1].Set_Func(OnTrigger_Custom);
-        m_menus[2].Set_Func(OnTrigger_Single);
-        m_menus[3].Set_Func(OnTrigger_Multi);
+        m_menus[2].Set_Func(OnTrigger_Multi);
+        m_menus[3].Set_Func(OnTrigger_Single);
     }
 
     public void OnTrigger_Quit()

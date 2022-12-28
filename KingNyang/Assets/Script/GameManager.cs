@@ -15,7 +15,15 @@ public class GameManager : Singleton<GameManager>
     TextMeshProUGUI m_timeText;
 
     [SerializeField]
+    TextMeshProUGUI m_startText;
+
+    [SerializeField]
     Slider m_scoreSlider;
+
+
+    [SerializeField]
+    UI_Wait m_wait;
+
 
     GameController[] m_controllers;
 
@@ -40,7 +48,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        if(this.GetComponentInChildren<PhotonInit>() == null)
+        m_startText.gameObject.SetActive(false);
+        if (this.GetComponentInChildren<PhotonInit>() == null)
         {
             InitAndStart_Game();
         }
@@ -57,17 +66,29 @@ public class GameManager : Singleton<GameManager>
         m_playerCount++;
 
         if (m_playerCount >= 2)
+        {
             _controller.MoveThis();
+            m_wait.Init_OtherControllers(_controller);
+        }
+        else
+            m_wait.Init_MyControllers(_controller);
 
-        Start_Game();
+        //Start_Game();
 
         //Debug.Log(m_playerCount);
     }
 
-    void Start_Game()
+    public void Update_CheckReady()
+    {
+        m_wait.Update_Controllers();
+    }
+
+    public void Start_MultiGame()
     {
         if (m_playerCount >= 2)
         {
+            
+            m_subCam?.Set_MiniScreen();
             GameManager.instance().InitAndStart_Game();
         }
     }
@@ -93,7 +114,20 @@ public class GameManager : Singleton<GameManager>
 
     IEnumerator Start_Game_Cor()
     {
-        yield return new WaitForSeconds(1.0f);
+        if(m_wait != null)
+            m_wait.gameObject.SetActive(false);
+        //yield return new WaitForSecondsRealtime(0.3f);
+        m_startText.gameObject.SetActive(true);
+        m_startText.text = 3 + "!";
+        yield return new WaitForSeconds(0.7f);
+        m_startText.text = 2 + "!";
+        yield return new WaitForSeconds(0.7f);
+        m_startText.text = 1 + "!";
+        yield return new WaitForSeconds(0.7f);
+        m_startText.text = "시작한다냥!";
+        yield return new WaitForSeconds(0.7f);
+
+        m_startText.gameObject.SetActive(false);
 
         m_isGameStart = true;
 

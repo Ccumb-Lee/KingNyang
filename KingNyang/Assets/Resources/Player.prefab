@@ -362,7 +362,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 2
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
@@ -1311,8 +1311,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0013, y: 0.002, z: 0.002}
-  m_Center: {x: 0, y: 0.0001, z: 0}
+  m_Size: {x: 0.0013, y: 0.0025, z: 0.002}
+  m_Center: {x: 0, y: 0.00015, z: 0}
 --- !u!1 &656526264433410858 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2137552507676970026, guid: 4370be8ed84feef41a0ec349e6e5df24, type: 3}
@@ -1345,8 +1345,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0013, y: 0.002, z: 0.002}
-  m_Center: {x: 0, y: 0.0001, z: 0}
+  m_Size: {x: 0.0013, y: 0.0025, z: 0.002}
+  m_Center: {x: 0, y: 0.00015, z: 0}
 --- !u!1 &7460487285212089773 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4370be8ed84feef41a0ec349e6e5df24, type: 3}
