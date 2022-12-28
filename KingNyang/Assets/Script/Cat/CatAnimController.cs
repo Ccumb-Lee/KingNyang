@@ -108,7 +108,8 @@ public class CatAnimController : MonoBehaviour
         m_anim.SetBool("left_02", false);
         m_anim.SetBool("left_01", false);
 
-        m_owner.Owner.CheckAndNext();
+        if (m_owner.Owner != null)
+            m_owner.Owner.CheckAndNext();
 
         
 
