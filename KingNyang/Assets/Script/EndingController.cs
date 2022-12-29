@@ -31,12 +31,17 @@ public class EndingController : MonoBehaviour
     [SerializeField]
     AudioClip[] m_audioClip;
 
+    bool m_isending = false;
     public void See_Ending(KIND _kind)
     {
+        if (m_isending)
+            return;
+
         this.gameObject.SetActive(true);
         m_image.sprite = m_endings[(int)_kind];
         m_image.gameObject.SetActive(true);
 
+        Debug.Log("¿£µù  " + _kind.ToString());
         m_main.Pause();
 
         if (_kind == KIND.happy)
@@ -50,7 +55,7 @@ public class EndingController : MonoBehaviour
 
         }
         m_audio.Play();
-
+        m_isending = true;
     }
 
     public void OnClick_Lobby()

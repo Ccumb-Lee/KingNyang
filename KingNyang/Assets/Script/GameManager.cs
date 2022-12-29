@@ -155,7 +155,8 @@ public class GameManager : Singleton<GameManager>
 
             if(m_time <= 0)
             {
-                End_Game();
+                See_Ending(EndingController.KIND.bad_common);
+                //End_Game();
             }
         }
     }
@@ -197,8 +198,13 @@ public class GameManager : Singleton<GameManager>
 
     public void End_Game(bool _isSuccess = false)
     {
-        if(m_isSingle)
+        if (!m_isGameStart)
+            return;
+
+        if (m_isSingle)
         {
+           
+
             for (int i = 0; i < m_controllers.Length; i++)
             {
                 m_controllers[i].SingleEnd();
@@ -206,11 +212,11 @@ public class GameManager : Singleton<GameManager>
 
             if(_isSuccess)
             {
-                See_Ending(EndingController.KIND.happy);
+                m_endingController.See_Ending(EndingController.KIND.happy);
             }
             else
             {
-                See_Ending(EndingController.KIND.bad_common);
+                m_endingController.See_Ending(EndingController.KIND.bad_common);
             }
         }
         else
@@ -245,8 +251,12 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+
     public void See_Ending(EndingController.KIND _kind)
     {
+        if (!m_isGameStart)
+            return;
+
         if(m_playerCount >= 2)
         {
             if ((int)_kind >= (int)EndingController.KIND.bad_1)

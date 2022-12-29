@@ -1353,7 +1353,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0015, y: 0.004, z: 0.0025}
+  m_Size: {x: 0.0012, y: 0.004, z: 0.0018}
   m_Center: {x: 0, y: 0.00015, z: 0}
 --- !u!1 &656526264433410858 stripped
 GameObject:
@@ -1387,7 +1387,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0015, y: 0.004, z: 0.0025}
+  m_Size: {x: 0.0012, y: 0.004, z: 0.0018}
   m_Center: {x: 0, y: 0.00015, z: 0}
 --- !u!137 &1903951845896782726 stripped
 SkinnedMeshRenderer:
