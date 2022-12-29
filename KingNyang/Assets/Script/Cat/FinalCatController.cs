@@ -16,6 +16,9 @@ public class FinalCatController : MonoBehaviour
     [SerializeField]
     Animator m_anim;
 
+    [SerializeField]
+    AudioSource m_audio;
+
     bool m_isMoving;
 
     bool m_canMove;
@@ -49,6 +52,7 @@ public class FinalCatController : MonoBehaviour
     public void Set_Material(int _num)
     {
         m_mesh.material = CatInfoController.instance().Get_Material((CatInfoController.CAT_TYPE)_num);
+        m_audio.clip = CatInfoController.instance().Get_Sound((CatInfoController.CAT_TYPE)_num);
     }
 
     public void Set_Costume(int[] _costumeData)
@@ -109,6 +113,7 @@ public class FinalCatController : MonoBehaviour
         m_anim.SetBool("isAttack", true);
         m_mesh.SetBlendShapeWeight(0, 100);
         m_mesh.SetBlendShapeWeight(1, 100);
+        m_audio.Play();
         m_isMoving = true;
 
         m_controller.Score++;

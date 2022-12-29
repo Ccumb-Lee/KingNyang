@@ -20,7 +20,13 @@ public class EndingController : MonoBehaviour
     Image m_image;
 
     [SerializeField]
+    Image m_happyImage;
+
+    [SerializeField]
     Sprite[] m_endings;
+
+    [SerializeField]
+    Sprite[] m_happys;
 
     [SerializeField]
     AudioSource m_audio;
@@ -31,6 +37,8 @@ public class EndingController : MonoBehaviour
     [SerializeField]
     AudioClip[] m_audioClip;
 
+    int m_index = 0;
+
     bool m_isending = false;
     public void See_Ending(KIND _kind)
     {
@@ -40,14 +48,15 @@ public class EndingController : MonoBehaviour
         this.gameObject.SetActive(true);
         m_image.sprite = m_endings[(int)_kind];
         m_image.gameObject.SetActive(true);
-
+        m_happyImage.gameObject.SetActive(false);
         Debug.Log("¿£µù  " + _kind.ToString());
         m_main.Pause();
 
         if (_kind == KIND.happy)
         {
             m_audio.clip = m_audioClip[0];
-            
+            m_happyImage.gameObject.SetActive(true);
+            m_happyImage.sprite = m_happys[m_index];
         }
         else
         {
@@ -61,6 +70,15 @@ public class EndingController : MonoBehaviour
     public void OnClick_Lobby()
     {
         SceneManager.LoadScene("Lobby");
+    }
+
+    public void OnClick_Happy()
+    {
+        m_index++;
+
+        if (m_index >= m_happys.Length)
+            return;
+        m_happyImage.sprite = m_happys[m_index];
     }
 
 }

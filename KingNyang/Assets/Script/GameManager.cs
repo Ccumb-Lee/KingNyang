@@ -203,8 +203,6 @@ public class GameManager : Singleton<GameManager>
 
         if (m_isSingle)
         {
-           
-
             for (int i = 0; i < m_controllers.Length; i++)
             {
                 m_controllers[i].SingleEnd();

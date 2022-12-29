@@ -28,6 +28,9 @@ public class CatInfoController : Singleton<CatInfoController>
     [SerializeField]
     Material[] m_catMats;
 
+    [SerializeField]
+    AudioClip[] m_sounds;
+
     private CAT_TYPE m_type;
     public CAT_TYPE Type
     {
@@ -59,6 +62,11 @@ public class CatInfoController : Singleton<CatInfoController>
     public Material Get_Material(CAT_TYPE _type)
     {
         return m_catMats[(int)_type];
+    }
+
+    public AudioClip Get_Sound(CAT_TYPE _type)
+    {
+        return m_sounds[(int)_type];
     }
 
     public void Change_CostumeData(int[] _costumeData)
