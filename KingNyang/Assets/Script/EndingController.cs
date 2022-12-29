@@ -22,11 +22,35 @@ public class EndingController : MonoBehaviour
     [SerializeField]
     Sprite[] m_endings;
 
+    [SerializeField]
+    AudioSource m_audio;
+    [SerializeField]
+    AudioSource m_main;
+
+
+    [SerializeField]
+    AudioClip[] m_audioClip;
+
     public void See_Ending(KIND _kind)
     {
         this.gameObject.SetActive(true);
         m_image.sprite = m_endings[(int)_kind];
         m_image.gameObject.SetActive(true);
+
+        m_main.Pause();
+
+        if (_kind == KIND.happy)
+        {
+            m_audio.clip = m_audioClip[0];
+            
+        }
+        else
+        {
+            m_audio.clip = m_audioClip[1];
+
+        }
+        m_audio.Play();
+
     }
 
     public void OnClick_Lobby()

@@ -195,12 +195,32 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    public void End_Game()
+    public void End_Game(bool _isSuccess = false)
     {
-        for (int i = 0; i < m_controllers.Length; i++)
+        if(m_isSingle)
         {
-            m_controllers[i].End_Game();
+            for (int i = 0; i < m_controllers.Length; i++)
+            {
+                m_controllers[i].SingleEnd();
+            }
+
+            if(_isSuccess)
+            {
+                See_Ending(EndingController.KIND.happy);
+            }
+            else
+            {
+                See_Ending(EndingController.KIND.bad_common);
+            }
         }
+        else
+        {
+            for (int i = 0; i < m_controllers.Length; i++)
+            {
+                m_controllers[i].End_Game();
+            }
+        }
+        
 
         m_isGameStart = false;
     }
@@ -245,7 +265,7 @@ public class GameManager : Singleton<GameManager>
 
         Set_Slider_Compare(m_myController.Score, m_otherController.Score);
 
-        if(m_myController.Score + m_otherController.Score >= 10)
+        if(m_myController.Score + m_otherController.Score >= 40)
         {
             CheckEnd_MultiGame();
         }

@@ -84,6 +84,7 @@ public class GameController : MonoBehaviour, IPunObservable
         m_targetScore = -1;
        
     }
+    int[] m_costume;
 
     private void Start()
     {
@@ -96,7 +97,9 @@ public class GameController : MonoBehaviour, IPunObservable
             Camera.main.transform.localPosition = Vector3.zero;
 
             m_type = (int)CatInfoController.instance().Type;
+            m_costume = CatInfoController.instance().Get_CostumeData();
             m_catController.Set_Material(m_type);
+            m_catController.Set_Costume(m_costume);
         }
         else
         {
@@ -125,14 +128,14 @@ public class GameController : MonoBehaviour, IPunObservable
 
         if (m_score >= m_targetScore)
         {
-            GameManager.instance().End_Game();
+            GameManager.instance().End_Game(true);
         }
     }
     
     public void Set_TargetScore()
     {
         m_isSingle = true;
-        m_targetScore = Random.Range(60, 65);
+        m_targetScore = Random.Range(30, 35);
     }
 
     public void Start_Game()
@@ -154,8 +157,16 @@ public class GameController : MonoBehaviour, IPunObservable
         {
             m_finalCat.Init(this);
             m_finalCat.Set_Material(m_type);
+            m_finalCat.Set_Costume(m_costume);
         }
             
+    }
+
+    public void SingleEnd()
+    {
+        m_isStart = false;
+        Set_CatCantMove();
+        
     }
 
     public void CheckAndNext()
@@ -186,6 +197,7 @@ public class GameController : MonoBehaviour, IPunObservable
             stream.SendNext(m_score);
             stream.SendNext(m_isReady);
             stream.SendNext(CatInfoController.instance().Type);
+            stream.SendNext(CatInfoController.instance().Get_CostumeData());
             //stream.SendNext(Health);
         }
         else
@@ -195,9 +207,11 @@ public class GameController : MonoBehaviour, IPunObservable
                 this.m_score = (int)stream.ReceiveNext();
                 this.m_isReady = (bool)stream.ReceiveNext();
                 this.m_type = (int)stream.ReceiveNext();
+                this.m_costume = (int[])stream.ReceiveNext();
                 GameManager.instance().Update_Slider();
                 GameManager.instance().Update_CheckReady();
                 m_catController.Set_Material(this.m_type);
+                m_catController.Set_Costume(this.m_costume);
             }
             catch
             {

@@ -14,6 +14,8 @@ public class Scene_Lobby : MonoBehaviour
     private void Start()
     {
         m_cat.Init();
+        m_cat.Set_Material((int)CatInfoController.instance().Type);
+        m_cat.Set_Costume(CatInfoController.instance().Get_CostumeData());
         m_cat.Set_CanMove();
 
         m_menus[0].Set_Func(OnTrigger_Quit);
@@ -29,8 +31,7 @@ public class Scene_Lobby : MonoBehaviour
 
     public void OnTrigger_Custom()
     {
-        //todo - ÄÚ½ºÆ¬
-        //Application.Quit();
+        SceneManager.LoadScene("Costume");
     }
 
     public void OnTrigger_Single()
@@ -43,11 +44,4 @@ public class Scene_Lobby : MonoBehaviour
         SceneManager.LoadScene("Multi");
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Tab))
-        {
-            CatInfoController.instance().Type++;
-        }
-    }
 }

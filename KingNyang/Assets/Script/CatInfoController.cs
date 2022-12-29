@@ -9,8 +9,21 @@ public class CatInfoController : Singleton<CatInfoController>
     {
         cheese,
         black,
+        tuxedo,
+        white,
+        threecolor,
         END
     }
+
+    public enum COSTUME_PART
+    {
+        face,
+        body,
+        ear,
+        END
+    }
+
+    int[] m_costume;
 
     [SerializeField]
     Material[] m_catMats;
@@ -28,14 +41,15 @@ public class CatInfoController : Singleton<CatInfoController>
 
             if((int)m_type >= (int)CAT_TYPE.END)
             {
-                m_type = (CAT_TYPE)(int)CAT_TYPE.END - 1;
+                m_type = (CAT_TYPE)(int)CAT_TYPE.cheese;
             }
             else if((int)m_type < (int)CAT_TYPE.cheese)
             {
-                m_type = CAT_TYPE.cheese;
+                m_type = CAT_TYPE.END - 1;
             }
         }
     }
+
 
     //private void Start()
     //{
@@ -45,6 +59,23 @@ public class CatInfoController : Singleton<CatInfoController>
     public Material Get_Material(CAT_TYPE _type)
     {
         return m_catMats[(int)_type];
+    }
+
+    public void Change_CostumeData(int[] _costumeData)
+    {
+        m_costume = _costumeData;
+    }
+
+    public int[] Get_CostumeData()
+    {
+        if(m_costume == null)
+        {
+            m_costume = new int[(int)COSTUME_PART.END];
+
+        }
+
+        return m_costume;
+
     }
 
 }

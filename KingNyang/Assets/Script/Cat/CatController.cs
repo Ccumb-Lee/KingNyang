@@ -84,6 +84,13 @@ public class CatController : MonoBehaviour
         m_catController.Set_Material(_num);
     }
 
+    public void Set_Costume(int[] _costume)
+    {
+        if (_costume == null)
+            return;
+
+        m_catController.Set_Costume(_costume);
+    }
     public void Create_Particle(Vector3 _pos)
     {
         Instantiate(m_particle, _pos, Quaternion.identity);

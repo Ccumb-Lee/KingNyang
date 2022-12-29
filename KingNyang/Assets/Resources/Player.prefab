@@ -480,8 +480,6 @@ MonoBehaviour:
   - {fileID: 5817447354802524936, guid: aeef9120d5f3aa043a7145fd0bc70f06, type: 3}
   - {fileID: 5817447354802524936, guid: 7c21bfd4d680d624880a07f7ae445868, type: 3}
   - {fileID: 5817447354802524936, guid: 658deb412303c0d4d8993046ee65bb10, type: 3}
-  - {fileID: 5817447354802524936, guid: ed250acb811d6f4408eff74dd4fed071, type: 3}
-  - {fileID: 5817447354802524936, guid: 748e20e16f3b21a43823336b60109e2f, type: 3}
 --- !u!114 &2299475982119783204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1355,7 +1353,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0013, y: 0.0035, z: 0.002}
+  m_Size: {x: 0.0015, y: 0.004, z: 0.0025}
   m_Center: {x: 0, y: 0.00015, z: 0}
 --- !u!1 &656526264433410858 stripped
 GameObject:
@@ -1389,7 +1387,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0013, y: 0.0035, z: 0.002}
+  m_Size: {x: 0.0015, y: 0.004, z: 0.0025}
   m_Center: {x: 0, y: 0.00015, z: 0}
 --- !u!137 &1903951845896782726 stripped
 SkinnedMeshRenderer:
@@ -1552,6 +1550,14 @@ PrefabInstance:
     - target: {fileID: 6478502590838287122, guid: c28c3d10e0027884497337acc43f610c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7205577385977856459, guid: c28c3d10e0027884497337acc43f610c, type: 3}
+      propertyPath: m_SynchronizeLayers.Array.data[0].SynchronizeType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7205577385977856459, guid: c28c3d10e0027884497337acc43f610c, type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[5].SynchronizeType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6478502590838287123, guid: c28c3d10e0027884497337acc43f610c, type: 3}

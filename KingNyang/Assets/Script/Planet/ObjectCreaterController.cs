@@ -110,7 +110,7 @@ public class ObjectCreaterController : MonoBehaviour
         {
             if (m_firstObjects[i] != null)
             {
-                if(m_firstObjects[i].tag != "HATE" && m_firstObjects[i].activeInHierarchy)
+                if(m_firstObjects[i].tag != "HATE" && m_firstObjects[i].tag != "LIKE" && m_firstObjects[i].activeInHierarchy)
                 {
                     canNext = false;
                 }
@@ -146,7 +146,7 @@ public class ObjectCreaterController : MonoBehaviour
         if (num < 5)
         {
             m_currentKind[_lineIndex] = 2;
-            return m_hateStuff;
+            return m_randomStuff;
         }
         else if (num < 10)
         {
