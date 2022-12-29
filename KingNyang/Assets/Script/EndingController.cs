@@ -54,15 +54,15 @@ public class EndingController : MonoBehaviour
 
         if (_kind == KIND.happy)
         {
-            m_audio.clip = m_audioClip[0];
             m_happyImage.gameObject.SetActive(true);
             m_happyImage.sprite = m_happys[m_index];
         }
         else
         {
-            m_audio.clip = m_audioClip[1];
+            
 
         }
+        m_audio.clip = m_audioClip[(int)_kind];
         m_audio.Play();
         m_isending = true;
     }
