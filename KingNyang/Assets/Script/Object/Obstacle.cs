@@ -57,6 +57,9 @@ public class Obstacle : MonoBehaviour
             {
                 m_cat.Create_Particle(this.transform.position);
                 this.gameObject.SetActive(false);
+
+
+                m_cat.Owner.CheckAndNext();
             }
         }
     }
